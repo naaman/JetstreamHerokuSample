@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <script type="text/javascript" src="/jquery/jquery-1.6.2.js"></script>
+        <script type="text/javascript" src="/jquery/json2.js"></script>
+        <script type="text/javascript" src="/org/cometd.js"></script>
+        <script type="text/javascript" src="/jquery/jquery.cometd.js"></script>
+        <script type="text/javascript">
+        (function($)
+    {
+        var cometd = $.cometd;
+
+        $(document).ready(function()
+        {
+        function _metaHandshake(handshake)
+        {
+            if (handshake.successful === true)
+            {
+            cometd.batch(function()
+            {
+                cometd.subscribe('/force/products', function(messages) {
+                $("body").append('<pre>' + JSON.stringify(messages) + '</pre>');
+                });
+            });
+            }
+        }
+
+        // Disconnect when the page unloads
+        $(window).unload(function()
+        {
+            cometd.disconnect(true);
+        });
+
+        var cometURL = location.protocol + "//" + location.host + "/cometd";
+        cometd.configure({
+            url: cometURL,
+
+        });
+
+        cometd.addListener('/meta/handshake', _metaHandshake);
+
+        cometd.handshake();
+        });
+    })(jQuery);
+    </script>
+    </head>
+    <body>
+    </body>
+</html>
