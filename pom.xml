@@ -11,7 +11,12 @@
         <java.version>1.6</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+    <distributionManagement>
+        <repository>
+            <id>snapshots</id>
+            <url>https://raw.github.com/naamannewbold/repo/master/snapshots</url>
+        </repository>
+    </distributionManagement>
     <repositories>
         <repository>
             <id>repo</id>
