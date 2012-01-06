@@ -15,6 +15,7 @@
         <repository>
             <id>snapshots</id>
             <url>https://raw.github.com/naamannewbold/repo/master/snapshots</url>
+
         </repository>
     </distributionManagement>
     <repositories>
